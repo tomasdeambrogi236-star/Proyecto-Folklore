@@ -228,3 +228,22 @@ function guardarEntradaEnHistorial() {
   historial.push(nuevaEntrada);
   localStorage.setItem('misEntradas', JSON.stringify(historial));
 }
+function obtenerButacasOcupadas(tituloNoche, sector) {
+  // Leemos TODAS las entradas vendidas (simulando la base de datos)
+  // Nota: Si actualmente guardas todo en 'misEntradas', usa ese key por ahora.
+  const todasLasEntradas = JSON.parse(localStorage.getItem('misEntradas')) || [];
+
+  let asientosOcupados = [];
+
+  // Filtramos las entradas de la noche y sector que el usuario está mirando
+  todasLasEntradas.forEach(entrada => {
+    if (entrada.titulo === tituloNoche && entrada.sector === sector) {
+      // Supongamos que entrada.butacas es un texto como "A1, A2, A3"
+      // Lo separamos por comas y limpiamos los espacios
+      const lista = entrada.butacas.split(',').map(asiento => asiento.trim());
+      asientosOcupados = asientosOcupados.concat(lista);
+    }
+  });
+
+  return asientosOcupados; // Devuelve un array ej: ["A1", "A2", "B5"]
+}

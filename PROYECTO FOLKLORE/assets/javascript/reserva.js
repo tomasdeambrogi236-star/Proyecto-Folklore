@@ -247,3 +247,22 @@ function obtenerButacasOcupadas(tituloNoche, sector) {
 
   return asientosOcupados; // Devuelve un array ej: ["A1", "A2", "B5"]
 }
+function actualizarMapaButacas(tituloNoche, sector) {
+  const ocupadas = obtenerButacasOcupadas(tituloNoche, sector);
+  const elementosButaca = document.querySelectorAll('.butaca');
+
+  elementosButaca.forEach(boton => {
+    const numeroAsiento = boton.getAttribute('data-numero');
+
+    // Si el número de este botón está en la lista de ocupadas...
+    if (ocupadas.includes(numeroAsiento)) {
+      boton.classList.add('butaca-ocupada');
+      boton.classList.remove('butaca-disponible');
+      boton.disabled = true; // Evita que le hagan clic
+    } else {
+      boton.classList.remove('butaca-ocupada');
+      boton.classList.add('butaca-disponible');
+      boton.disabled = false;
+    }
+  });
+}

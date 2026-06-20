@@ -77,7 +77,7 @@ function obtenerSesion() {
 /** Cierra la sesión y redirige al login */
 function cerrarSesion() {
   sessionStorage.removeItem('usuarioActivo');
-  window.location.href = 'login.html';
+  window.location.href = 'index.html';
 }
 
 // ──────────────────────────────────────────────
@@ -221,7 +221,7 @@ function manejarRegistro() {
 
 function requiereLogin() {
   if (!obtenerSesion()) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
   }
 }
 
